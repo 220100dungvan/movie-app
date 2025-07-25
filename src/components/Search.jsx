@@ -1,4 +1,3 @@
-import { useState } from "react";
 export function Search({ searchTerm, setSearchTerm }) {
   return (
     <div className="search">
