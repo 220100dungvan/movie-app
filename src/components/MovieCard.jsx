@@ -28,6 +28,4 @@ function MovieCard({
     </div>
   );
 }
-//https://media.themoviedb.org/t/p/w440_and_h660_face/psASSoFLAGFoXwyfRg4hDZHgshN.jpg
-//https://media.themoviedb.org/t/p/w440_and_h660_face/n0bqzWiKGJsmnvOlkTiYykhhM4E.jpg
 export default MovieCard;
