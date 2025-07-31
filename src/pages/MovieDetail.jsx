@@ -22,8 +22,23 @@ const API_OPTIONS = {
 function MovieDetail() {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [video, setVideo] = useState(null);
 
   const params = useParams();
+
+  const fetchVideo = async (id) => {
+    try {
+      const url = `${API_BASE_URL}/movie/${id}/videos`;
+      const response = await fetch(url, API_OPTIONS);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      setVideo(data.results[0]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const fetchMovieDetail = async (id) => {
     try {
@@ -46,6 +61,7 @@ function MovieDetail() {
   useEffect(() => {
     if (params.id) {
       fetchMovieDetail(params.id);
+      fetchVideo(params.id);
     }
   }, [params.id]);
 
@@ -117,14 +133,15 @@ function MovieDetail() {
                 />
               </div>
               <div className="movie-trailer">
-                <img
+                {/* <img
                   src={
                     movie.backdrop_path
                       ? `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
                       : "/no-backdrop.png"
                   }
                   alt="Squid Game Trailer"
-                />
+                /> */}
+                  <iframe src={`https://www.youtube.com/embed/${video.key}`}></iframe>
                 <button className="trailer-button">
                   <PlayButton size={24} fill="#AB8BFF"></PlayButton>
                   <span>Trailer</span>

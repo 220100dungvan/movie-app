@@ -240,6 +240,10 @@
                 & img {
                     @apply w-full h-full object-cover rounded-[10px];
                 }
+
+                & iframe {
+                    @apply w-full h-full rounded-[10px];
+                }
             }
 
             & .movie-trailer {
