@@ -6,6 +6,7 @@
 @theme {
     --color-primary: #030014;
 
+
     --color-light-100: #cecefb;
     --color-light-200: #a8b5db;
 
@@ -21,6 +22,11 @@
 }
 
 @layer base {
+    :root {
+        --movie-detail-content-width: 800px;
+        --detail-label-width: 150px;
+    }
+
     body {
         font-family: "DM Sans", serif;
         font-optical-sizing: auto;
@@ -102,7 +108,7 @@
     }
 
     .movie-card {
-        @apply bg-dark-100 p-5 rounded-2xl shadow-inner shadow-light-100/10;
+        @apply bg-dark-100 p-5 rounded-2xl shadow-inner shadow-light-100/10 hover:cursor-pointer;
 
         & img {
             @apply rounded-lg h-auto w-full;
@@ -145,7 +151,7 @@
         @apply text-white flex justify-center items-center mt-9 gap-5;
 
         &>button {
-            @apply bg-dark-100 rounded-lg w-16 h-16 flex items-center justify-center font-semibold text-lg text-center;
+            @apply bg-dark-100 rounded-lg w-16 h-16 flex items-center justify-center font-semibold text-lg text-center border-[1px] border-solid border-[#AB8BFF] text-[#AB8BFF];
 
             &:hover {
                 @apply cursor-pointer;
@@ -159,12 +165,125 @@
                 @apply border-[1px] border-solid border-[#BCBCBC];
             }
 
-            &.pagination-number {
+            /* &.pagination-number {
                 @apply border-[1px] border-solid border-[#AB8BFF] text-[#AB8BFF] ;
-            }
+            } */
 
             &.pagination-number.active {
                 @apply bg-[#AB8BFF] text-white;
+            }
+
+            &.ellipsis {
+                @apply cursor-default;
+            }
+        }
+    }
+
+    .movie-detail {
+        @apply text-white my-[60px] mx-[120px] bg-[#0F0D23] p-[50px] rounded-[14px];
+        box-shadow:
+            0px 0px 100px rgba(171, 139, 255, 0.3),
+            inset 0px 12px 32px rgba(206, 206, 251, 0.02);
+
+        & .movie-detail__header {
+            @apply flex flex-row justify-between items-center mb-[30px];
+
+            & .movie-title {
+                @apply font-bold text-4xl text-left;
+            }
+
+            & .movie-meta {
+                @apply flex gap-2 items-center mt-4 text-light-200 text-lg;
+            }
+
+            & .rating-bar {
+                @apply flex flex-row items-center gap-2.5 self-start;
+
+                & button {
+                    @apply flex items-center gap-1 rounded-md bg-[#221F3D] py-[7px] px-4 text-light-200 cursor-pointer;
+
+                    & .rating-score {
+                        @apply flex gap-1 items-center;
+                    }
+
+                    & .score-value {
+                        @apply text-white;
+                    }
+
+                    /* &.rating-bar__votes {
+                        @apply ;
+                    }
+
+                    &.rating-bar__popularity {
+                        @apply ;
+                    } */
+                }
+            }
+
+
+        }
+
+        & .movie-detail__media {
+            @apply flex flex-row justify-between items-center mb-[30px];
+
+            & .movie-poster {
+                @apply w-[302px] h-[441px] relative;
+
+                & img {
+                    @apply w-full h-full object-cover rounded-[10px];
+                }
+            }
+
+            & .movie-trailer {
+                @apply w-[772px] h-[441px] relative;
+
+                & img {
+                    @apply w-full h-full object-cover rounded-[10px];
+                }
+            }
+
+            & .movie-trailer {
+                @apply relative;
+
+                & button.trailer-button {
+                    @apply absolute left-6 bottom-6 bg-white/30 backdrop-blur-[10px] rounded-[45px] py-[9px] px-[18px] flex flex-row items-center gap-[10px] cursor-pointer;
+                }
+
+                & span.dot {
+                    @apply text-light-200
+                }
+            }
+        }
+
+        & .movie-detail__information {
+            @apply flex flex-row justify-between items-start;
+
+            & .movie-detail__content {
+                @apply w-[var(--movie-detail-content-width)] flex flex-col gap-5;
+            }
+
+            & .homepage-button {
+                @apply flex justify-between gap-1 items-center py-[14px] px-5 bg-gradient-to-r from-[#D6C7FF] to-[#AB8BFF] rounded-[6px] text-black font-semibold;
+            }
+
+            & .detail-item {
+                @apply flex flex-row items-start w-full;
+            }
+
+            & .detail-item__label {
+                @apply w-[var(--detail-label-width)] text-light-200 text-lg;
+            }
+
+            & .detail-item__value {
+                @apply w-[calc(var(--movie-detail-content-width)-var(--detail-label-width))] flex gap-[9px];
+
+                &:not(.overview) {
+                    @apply text-[#D6C7FF] font-semibold;
+                }
+
+                & span.genre {
+                    @apply font-semibold py-[3.5px] px-[18px] bg-[#221F3D] rounded-md leading-[1.75] cursor-pointer;
+                }
             }
         }
     }
