@@ -133,15 +133,20 @@ function MovieDetail() {
                 />
               </div>
               <div className="movie-trailer">
-                {/* <img
-                  src={
-                    movie.backdrop_path
-                      ? `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
-                      : "/no-backdrop.png"
-                  }
-                  alt="Squid Game Trailer"
-                /> */}
-                  <iframe src={`https://www.youtube.com/embed/${video.key}`}></iframe>
+                {video ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.key}`}
+                  ></iframe>
+                ) : (
+                  <img
+                    src={
+                      movie.backdrop_path
+                        ? `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
+                        : "/no-backdrop.png"
+                    }
+                    alt="Squid Game Trailer"
+                  />
+                )}
                 <button className="trailer-button">
                   <PlayButton size={24} fill="#AB8BFF"></PlayButton>
                   <span>Trailer</span>
